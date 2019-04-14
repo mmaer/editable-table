@@ -4,11 +4,48 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "clean": "rm -rf dist browser",
+    "lint": "eslint src/**",
+    "lint:fix": "eslint --fix src/**",
+    "pretest": "npm run clean & npm run lint",
+    "test": "BABEL_ENV=test",
+    "compile": "BABEL_ENV=production RUN_MODE=es webpack --config webpack.config.dist.js",
+    "start": "BABEL_ENV=development webpack-dev-server --config webpack.config.dev.js"
   },
   "keywords": [
     "editable-table"
   ],
   "author": "Kamil Kruczek",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "prop-types": "^15.7.2",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.3",
+    "@babel/plugin-proposal-class-properties": "^7.4.0",
+    "@babel/plugin-transform-react-constant-elements": "^7.2.0",
+    "@babel/plugin-transform-react-inline-elements": "^7.2.0",
+    "@babel/preset-env": "^7.4.3",
+    "@babel/preset-react": "^7.0.0",
+    "babel-eslint": "^10.0.1",
+    "babel-loader": "^8.0.5",
+    "babel-plugin-transform-react-remove-statics": "0.0.5",
+    "clean-webpack-plugin": "^2.0.1",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.17.1",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-react": "^7.12.4",
+    "react-hot-loader": "^4.8.3",
+    "uglifyjs-webpack-plugin": "^2.1.2",
+    "webpack": "^4.30.0",
+    "webpack-cli": "^3.3.0",
+    "webpack-dev-server": "^3.3.1",
+    "webpack-hot-middleware": "^2.24.3"
+  },
+  "engines": {
+    "node": "8"
+  }
 }

@@ -1,0 +1,30 @@
+### user ###
+
+# User-specific stuff
+.idea/
+
+### test ###
+/bin
+/screenshots
+/allure-results
+/perf
+
+### base ###
+# release folder
+/dist
+/browser
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Dependency directories
+node_modules
+coverage
+.nyc_output
+
+sanbox
+
+
+

@@ -14,35 +14,35 @@ import Tr from '../Tr';
 
 import Button from '../Button';
 
-const generateThead = (thead, setHeadCell, removeColumn) => thead.map((text, columnPosition) => (
+const renderTHead = (thead, setHeadCell, removeColumn) => thead.map((value, columnPosition) => (
     <Cell
-        key={`th-${text}-${columnPosition}`}
+        key={`th-${value}-${columnPosition}`}
         setCell={setHeadCell({ columnPosition })}
         type={Cell.TYPES.TH}
-        text={text}
+        text={value}
         editable
     >
-        {text}
+        {value}
         <Button onClick={() => removeColumn(columnPosition)} type={Button.TYPES.DANGER}>
             Remove
         </Button>
     </Cell>
 ));
 
-const generateTbody = (tbody, setBodyCell, removeRow) => tbody.map((rowElements, rowPosition) => (
+const renderTBody = (tbody, setBodyCell, removeRow) => tbody.map((rowElements, rowPosition) => (
     <Tr key={`tr-body-${rowPosition}`}>
         <Cell key="th-actions" type={Cell.TYPES.TD}>
             <Button onClick={() => removeRow(rowPosition)} type={Button.TYPES.DANGER}>Remove</Button>
         </Cell>
-        {rowElements.map((text, columnPosition) => (
+        {rowElements.map((value, columnPosition) => (
             <Cell
-                key={`th-${text}-${columnPosition}`}
+                key={`th-${value}-${columnPosition}`}
                 setCell={setBodyCell({ rowPosition, columnPosition })}
                 type={Cell.TYPES.TD}
-                text={text}
+                text={value}
                 editable
             >
-                {text}
+                {value}
             </Cell>
         ))}
     </Tr>
@@ -66,11 +66,11 @@ const Companies = () => {
                 <Thead>
                     <Tr>
                         <Cell key="th-actions" type={Cell.TYPES.TH} text="Actions" />
-                        {generateThead(thead, setHeadCell, removeColumn)}
+                        {renderTHead(thead, setHeadCell, removeColumn)}
                     </Tr>
                 </Thead>
                 <Tbody>
-                    {generateTbody(tbody, setBodyCell, removeRow)}
+                    {renderTBody(tbody, setBodyCell, removeRow)}
                 </Tbody>
             </Table>
             <br />

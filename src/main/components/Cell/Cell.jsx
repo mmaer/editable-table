@@ -64,7 +64,7 @@ Cell.defaultProps = {
     placeholder: 'Edit...',
     setCell: () => {},
     editable: false,
-    children: '',  
+    children: '',
 };
 
 Cell.propTypes = {

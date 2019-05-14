@@ -7,6 +7,8 @@ import {
     SET_HEAD_CELL,
 } from './constants';
 
+const filterNotEqualPosition = (positions, pos1) => positions.filter((_, pos2) => pos1 !== pos2);
+
 // eslint-disable-next-line consistent-return
 const reducer = (state, action) => {
     // eslint-disable-next-line default-case
@@ -14,16 +16,16 @@ const reducer = (state, action) => {
     case ADD_COLUMN: {
         return {
             ...state,
-            thead: [...state.thead, 'New column'],
-            tbody: state.tbody.map(row => [...row, 'New Item']),
+            thead: [...state.thead, ''],
+            tbody: state.tbody.map(row => [...row, '']),
         };
     }
     case REMOVE_COLUMN: {
         const { columnPosition } = action;
         return {
             ...state,
-            thead: state.thead.filter((item, position) => position !== columnPosition),
-            tbody: state.tbody.map(row => row.filter((item, position) => position !== columnPosition)),
+            thead: filterNotEqualPosition(state.thead, columnPosition),
+            tbody: state.tbody.map(row => filterNotEqualPosition(row, columnPosition)),
         };
     }
     case ADD_ROW: {
@@ -36,7 +38,7 @@ const reducer = (state, action) => {
         const { rowPosition } = action;
         return {
             ...state,
-            tbody: state.tbody.filter((item, position) => position !== rowPosition),
+            tbody: filterNotEqualPosition(state.tbody, rowPosition),
         };
     }
     case SET_BODY_CELL: {

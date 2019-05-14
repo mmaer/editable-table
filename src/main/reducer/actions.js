@@ -7,9 +7,10 @@ import {
     REMOVE_ROW,
     SET_BODY_CELL,
     SET_HEAD_CELL,
-} from '../reducer/constants';
+} from './constants';
 
-const useTable = (initialState, reducer) => {
+// eslint-disable-next-line import/prefer-default-export
+export const useTable = (initialState, reducer) => {
     const [state, dispatch] = useReducer(reducer, initialState);
 
     const setBodyCell = positions => newValue => dispatch({ type: SET_BODY_CELL, newValue, ...positions });
@@ -34,5 +35,3 @@ const useTable = (initialState, reducer) => {
         removeColumn,
     };
 };
-
-export default useTable;
